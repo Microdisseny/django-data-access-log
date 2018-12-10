@@ -18,7 +18,7 @@ class DataAccessLogAdmin(admin.ModelAdmin):
     def has_change_permission(self, request, obj=None):
         # Before Django 2.1 there wasn't a has_view_permission, thus we use this.
         if django.VERSION < (2, 1):
-            return super().has_change_permission(request, obj)
+            return super(DataAccessLogAdmin, self).has_change_permission(request, obj)
         else:
             return False
 
