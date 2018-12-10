@@ -14,7 +14,7 @@ class DataAccessLog(models.Model):
     def save(self, *args, **kwargs):
         # Only creation allowed
         if self.pk is None:
-            super().save(*args, **kwargs)
+            super(DataAccessLog, self).save(*args, **kwargs)
 
     def __str__(self):
         return '{}@{}'.format(self.viewset, self.timestamp)
