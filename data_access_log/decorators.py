@@ -20,13 +20,16 @@ def data_access_log(viewset):
                 username = '(anonymous user)'
             else:
                 username = request.user.username
-
+            if hasattr(response, 'rendered_content'):
+                rendered_content = response.rendered_content
+            else:
+                rendered_content = response.getvalue()
             log = DataAccessLog(
                 model=model_name,
                 viewset=viewset_name,
                 url=request.build_absolute_uri(),
                 user=username,
-                response=response.data,
+                response=rendered_content,
             )
             log.save()
         return response
