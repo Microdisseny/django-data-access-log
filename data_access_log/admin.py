@@ -9,9 +9,11 @@ class DataAccessLogAdmin(admin.ModelAdmin):
     list_display = ('model', 'viewset', 'user', 'timestamp')
     list_display_links = ('model', 'viewset', 'timestamp')
 
-    fields = ('model', 'viewset', 'timestamp', 'user', 'url', 'response')
+    fields = ('model', 'viewset', 'timestamp', 'user', 'url', 'remote_url', 'response')
     readonly_fields = fields
 
+    search_fields = ['user', 'url', 'remote_url', 'response']
+    date_hierarchy = 'timestamp'
     def has_add_permission(self, request):
         return False
 

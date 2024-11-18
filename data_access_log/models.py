@@ -9,6 +9,7 @@ class DataAccessLog(models.Model):
     timestamp = models.DateTimeField('Access timestamp', auto_now_add=True, editable=False, null=False, blank=False)
     user = models.CharField('User', max_length=255, null=False, blank=False)
     url = models.CharField('URL', max_length=255, null=False, blank=False)
+    remote_url = models.CharField('Remote URL', max_length=255, null=True, blank=True)
     response = models.TextField('Response content', null=False, blank=False)
 
     def save(self, *args, **kwargs):
